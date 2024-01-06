@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #071422;
+    color: #AFC2D4;
+}
+
+.container {
+    width: 100%;
+    max-width: 864px;
+    margin: 0 auto;
+    /* Centraliza o conteúdo */
+}
+
+.header-background {
+    background-image: url('./assets/cover.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 296px;
+    /* Ajuste conforme necessário */
+}
+
+.line-clamp-4 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    /* Número de linhas que deseja exibir */
+}
+
+@layer base {
+    p {
+        @apply text-base;
+    }
+
+    h1 {
+        @apply text-2xl text-base-title;
+    }
+
+    h2 {
+        @apply text-xl;
+    }
+
+    h2 {
+        @apply text-lg;
+    }
+
+    small {
+        @apply text-sm;
+    }
+
+    input {
+        @apply focus:outline-none bg-base-input border-2 border-base-border text-base-label rounded-md h-12 p-5;
+    }
+
+    a {
+        @apply text-xs text-blue;
+    }
+}
