@@ -60,6 +60,6 @@ body {
     }
 
     a {
-        @apply text-xs text-blue;
+        @apply text-xs;
     }
 }

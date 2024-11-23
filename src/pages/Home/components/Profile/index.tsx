@@ -1,6 +1,7 @@
 import { ArrowSquareOut, Buildings, GithubLogo, Users } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../../../../lib/axios";
+import { Link } from "react-router-dom";
 
 interface UserData {
     name: string;
@@ -12,25 +13,22 @@ interface UserData {
 
 export function Profile() {
 
-    const [userData, setUserData] = useState<UserData>({
-        name: "",
-        bio: "",
-        login: "",
-        followers: 0,
-        avatar_url: "",
-    })
+    const [userData, setUserData] = useState<UserData>(
+        {} as UserData
+    )
+
+    const getGithubUser = async () => {
+        try {
+            const response = await api.get('/users/lucas-mandai')
+            setUserData(response.data);
+            console.log(response.data)
+        } finally { 
+            //
+        }
+    }
 
     useEffect(() => {
-        const fetchGithubUser = async () => {
-            try {
-                const response = await axios.get('https://api.github.com/users/lucas-mandai')
-                setUserData(response.data)
-            } catch (error) {
-                // console.error('Erro ao obter dados do usuário:', error.message)
-            }
-        }
-
-        fetchGithubUser();
+        getGithubUser();
     }, [])
 
     return (
@@ -39,7 +37,10 @@ export function Profile() {
             <div className='flex flex-col gap-4'>
                 <div className='flex justify-between'>
                     <h1 className='font-bold'>{userData.name}</h1>
-                    <a className='flex gap-1' href="">Github <ArrowSquareOut size={20} className='text-blue' /></a>
+                    <Link 
+                        className='flex gap-1 text-blue' 
+                        to="">Github <ArrowSquareOut size={20} className='text-blue' />
+                    </Link>
                 </div>
 
                 <p>{userData.bio}</p>
